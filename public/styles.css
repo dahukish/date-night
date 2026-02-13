@@ -1,0 +1,31 @@
+
+body {
+    background: #fbf6ee;
+    font-family: system-ui;
+    color: #2c2a27;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 60px auto;
+  }
+  
+  button {
+    background: #7a8f62;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+
+  :root{--bg:#fbf6ee;--card:#fffaf2;--ink:#2c2a27;--muted:#6b645b;--accent:#7a8f62;--border:#e7dccb;--radius:18px}
+body{margin:0;font-family:system-ui;background:var(--bg);color:var(--ink)}
+.container{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+button,.btn{border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:14px;cursor:pointer;font-weight:650}
+.btn.primary,button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:#fff}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}

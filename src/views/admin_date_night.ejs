@@ -1,0 +1,119 @@
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+      <div>
+        <h2 style="margin:0"><%= dateNight.title %></h2>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+          Theme: <strong><%= theme.name %></strong>
+          <% if (dateNight.dateText) { %> • When: <strong><%= dateNight.dateText %></strong><% } %>
+        </div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+          Planner notifications go to: <strong><%= plannerEmail || "(missing — set PLANNER_EMAIL)" %></strong>
+        </div>
+      </div>
+  
+      <div style="display:flex; gap:8px; align-items:center;">
+        <a class="btn" href="/admin">Back</a>
+        <form method="post" action="/admin/date-night/<%= dateNight.id %>/delete" style="margin:0">
+          <button type="submit" onclick="return confirm('Delete this date night (and its invites + selections)?');">
+            Delete 🧺
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div style="height:12px"></div>
+  
+  <div class="card">
+    <h3 style="margin-top:0">Generate a new invite</h3>
+  
+    <form method="post" action="/admin/date-night/<%= dateNight.id %>/invite">
+      <label>Partner email (optional, for sending the link)</label>
+      <input name="recipientEmail" type="email" placeholder="partner@example.com" />
+  
+      <div style="height:12px"></div>
+      <button class="primary" type="submit">Create invite link ✉️</button>
+  
+      <div style="color:var(--muted); font-size:13px; margin-top:8px;">
+        If email isn’t configured, the app will log the email content to console and still create the link.
+      </div>
+    </form>
+  </div>
+  
+  <div style="height:12px"></div>
+  
+  <div class="card">
+    <h3 style="margin-top:0">Invites</h3>
+  
+    <% if (invites.length === 0) { %>
+      <div style="color:var(--muted)">No invites yet.</div>
+    <% } %>
+  
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+      <% invites.forEach(inv => { %>
+        <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
+          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+            <div style="min-width: 260px;">
+              <div style="font-weight:900;">Invite</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+                Link:
+                <a href="<%= inv.url %>" target="_blank" rel="noreferrer"><%= inv.url %></a>
+              </div>
+              <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+                Recipient: <strong><%= inv.recipientEmail || "—" %></strong>
+              </div>
+              <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+                Status: <strong><%= inv.used ? "Used ✅" : "Unused 🕊️" %></strong>
+              </div>
+              <% if (inv.used && inv.selectionSummary) { %>
+                <div style="color:var(--muted); font-size:13px; margin-top:6px;">
+                  Picks: <%= inv.selectionSummary %>
+                </div>
+              <% } %>
+            </div>
+  
+            <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+              <button class="btn" type="button"
+                onclick="navigator.clipboard.writeText('<%= inv.url %>'); this.textContent='Copied 🌼'; setTimeout(()=>this.textContent='Copy link', 1200);">
+                Copy link
+              </button>
+  
+              <% if (inv.recipientEmail) { %>
+                <form method="post" action="/admin/invite/<%= inv.id %>/resend" style="margin:0">
+                  <button class="btn primary" type="submit">Re-send email ✉️</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  
+  <div style="height:12px"></div>
+  
+  <div class="card">
+    <h3 style="margin-top:0">Theme menu preview</h3>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:10px;">
+      This is what your partner will choose from.
+    </div>
+  
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
+        <div style="font-weight:900;">Dinner</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.dinner.join(" • ") %></div>
+      </div>
+  
+      <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
+        <div style="font-weight:900;">Activity</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.activity.join(" • ") %></div>
+      </div>
+  
+      <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
+        <div style="font-weight:900;">Mood</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.mood.join(" • ") %></div>
+      </div>
+    </div>
+  </div>
+  
+

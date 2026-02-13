@@ -1,0 +1,47 @@
+<h2>Admin Dashboard</h2>
+<p>From here you’ll create new date nights and manage invites.</p>
+
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+      <div>
+        <h2 style="margin:0">Planner dashboard</h2>
+        <div style="color:var(--muted); font-size:13px; margin-top:4px;">
+          Create a date night, generate an invite link, and send it to your person 💛
+        </div>
+      </div>
+      <a class="btn primary" href="/admin/new">+ New date night</a>
+    </div>
+  </div>
+  
+  <div style="height:12px"></div>
+  
+  <div class="card">
+    <h3 style="margin-top:0">Your date nights</h3>
+  
+    <% if (dateNights.length === 0) { %>
+      <div style="color:var(--muted)">No date nights yet. Make something cozy 🌿</div>
+    <% } %>
+  
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+      <% dateNights.forEach(dn => { %>
+        <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:900">
+                <a href="/admin/date-night/<%= dn.id %>"><%= dn.title %></a>
+              </div>
+              <div style="color:var(--muted); font-size:13px;">
+                Theme: <%= dn.themeName %>
+                <% if (dn.dateText) { %> • When: <%= dn.dateText %><% } %>
+              </div>
+            </div>
+            <div style="color:var(--muted); font-size:13px;">
+              Invites: <strong><%= dn.inviteCount %></strong>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  
+

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div style="font-weight:900">🌿 Date Night Cottage</div>
+        <div style="color:var(--muted);font-size:13px">cute & cozy planning for two</div>
+      </div>
+      <div>
+        <% if (admin) { %>
+          <a class="btn" href="/admin">Admin</a>
+          <a class="btn" href="/admin/logout">Logout</a>
+        <% } else { %>
+          <a class="btn" href="/admin">Admin</a>
+        <% } %>
+      </div>
+    </header>
+
+    <% if (flash && flash.message) { %>
+      <div class="card" style="margin-bottom:12px; background:#fff;">
+        <%= flash.message %>
+      </div>
+    <% } %>
+
+    <%- body %>
+  </div>
+</body>
+</html>

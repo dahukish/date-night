@@ -1,0 +1,33 @@
+<h2>New Date Night</h2>
+<p>Describe the evening you’re planning, then send invites.</p>
+
+<div class="card">
+  <h2 style="margin-top:0">Create a date night</h2>
+  <div style="color:var(--muted); font-size:13px; margin-bottom:12px;">
+    Give it a sweet name and a theme.
+  </div>
+
+  <form method="post" action="/admin/new">
+    <label>Title</label>
+    <input name="title" placeholder="Cozy Cottage Night" required />
+
+    <div style="height:12px"></div>
+
+    <label>Theme</label>
+    <select name="themeId" required>
+      <% themes.forEach(t => { %>
+        <option value="<%= t.id %>"><%= t.name %></option>
+      <% }) %>
+    </select>
+
+    <div style="height:12px"></div>
+
+    <label>Date (optional)</label>
+    <input type="date" name="date" />
+
+    <div style="height:16px"></div>
+
+    <button class="primary" type="submit">Create 🌼</button>
+    <a class="btn" href="/admin">Cancel</a>
+  </form>
+</div>

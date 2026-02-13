@@ -1,0 +1,51 @@
+<div class="card">
+  <h2 style="margin-top:0">🌼 A cozy little choice menu</h2>
+  <div style="color:var(--muted); font-size:13px; line-height:1.6;">
+    You’ve been invited to: <strong><%= dateNight.title %></strong><br/>
+    Theme: <strong><%= theme.name %></strong>
+  </div>
+
+  <div style="height:12px"></div>
+
+  <% if (used) { %>
+    <div style="color:var(--muted); line-height:1.6;">
+      This invite has already been used. If you need a new link, ask your planner 💛
+    </div>
+  <% } else { %>
+    <form method="post" action="/invite/<%= token %>">
+      <label>Dinner</label>
+      <select name="dinnerChoice" required>
+        <% theme.options.dinner.forEach(o => { %>
+          <option value="<%= o %>"><%= o %></option>
+        <% }) %>
+      </select>
+
+      <div style="height:12px"></div>
+
+      <label>Activity</label>
+      <select name="activityChoice" required>
+        <% theme.options.activity.forEach(o => { %>
+          <option value="<%= o %>"><%= o %></option>
+        <% }) %>
+      </select>
+
+      <div style="height:12px"></div>
+
+      <label>Mood</label>
+      <select name="moodChoice" required>
+        <% theme.options.mood.forEach(o => { %>
+          <option value="<%= o %>"><%= o %></option>
+        <% }) %>
+      </select>
+
+      <div style="height:12px"></div>
+
+      <label>Anything you’d love? (optional)</label>
+      <textarea name="notes" rows="3" placeholder="I’m craving something warm and cozy…"></textarea>
+
+      <div style="height:14px"></div>
+
+      <button class="primary" type="submit">Send my picks 🌿</button>
+    </form>
+  <% } %>
+</div>
