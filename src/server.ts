@@ -19,6 +19,7 @@ import {
 type Flash = { type: "info" | "error"; message: string };
 
 const app = express();
+app.set("trust proxy", 1);
 const VIEWS_DIR = path.join(process.cwd(), "src", "views");
 
 function parseLines(input: string): string[] {
@@ -52,6 +53,7 @@ app.use(
     secret: process.env.SESSION_SECRET || "dev-secret",
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
       httpOnly: true,
       sameSite: "lax",
@@ -529,6 +531,11 @@ app.post("/admin/date-night/:id/menu", requireAdmin, (req, res) => {
 
 app.get("/health", (_req, res) => {
   res.status(200).send("ok");
+});
+
+app.get("/debug/session", (req, res) => {
+  const s = req.session as any;
+  res.json({ isAdmin: Boolean(s.isAdmin) });
 });
 
 const PORT = Number(process.env.PORT || 3000);
