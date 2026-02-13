@@ -1,0 +1,34 @@
+<div class="card">
+    <h2 style="margin-top:0">Edit itinerary</h2>
+    <div style="color:var(--muted); font-size:13px; line-height:1.6;">
+      One option per line. These choices will appear on the invite page.
+    </div>
+  
+    <div style="height:12px"></div>
+  
+    <form method="post" action="/admin/date-night/<%= dateNight.id %>/menu">
+      <label>Blurb (optional)</label>
+      <input name="blurb" value="<%= blurb || '' %>" placeholder="Warm bread, candlelight, gentle joy…" />
+  
+      <div style="height:12px"></div>
+  
+      <label>Dinner options (one per line)</label>
+      <textarea name="dinner" rows="6"><%= dinnerText %></textarea>
+  
+      <div style="height:12px"></div>
+  
+      <label>Activity options (one per line)</label>
+      <textarea name="activity" rows="6"><%= activityText %></textarea>
+  
+      <div style="height:12px"></div>
+  
+      <label>Mood options (one per line)</label>
+      <textarea name="mood" rows="6"><%= moodText %></textarea>
+  
+      <div style="height:14px"></div>
+  
+      <button class="primary" type="submit">Save 🌿</button>
+      <a class="btn" href="/admin/date-night/<%= dateNight.id %>">Back</a>
+    </form>
+  </div>
+  

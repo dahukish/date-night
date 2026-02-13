@@ -16,12 +16,13 @@ export function getDb() {
 function migrate(d: Database.Database) {
   d.exec(`
     CREATE TABLE IF NOT EXISTS date_nights (
-      id TEXT PRIMARY KEY,
-      title TEXT NOT NULL,
-      theme_id TEXT NOT NULL,
-      date_iso TEXT,
-      planner_email TEXT,
-      created_at TEXT NOT NULL
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        theme_id TEXT NOT NULL,
+        date_iso TEXT,
+        menu_json TEXT NOT NULL,
+        blurb TEXT,
+        created_at TEXT NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS invites (
@@ -44,3 +45,5 @@ function migrate(d: Database.Database) {
     );
   `);
 }
+
+

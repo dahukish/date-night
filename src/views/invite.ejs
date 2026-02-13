@@ -2,7 +2,7 @@
   <h2 style="margin-top:0">🌼 A cozy little choice menu</h2>
   <div style="color:var(--muted); font-size:13px; line-height:1.6;">
     You’ve been invited to: <strong><%= dateNight.title %></strong><br/>
-    Theme: <strong><%= theme.name %></strong>
+    Theme: <strong><%= themeName %></strong>
   </div>
 
   <div style="height:12px"></div>
@@ -15,7 +15,7 @@
     <form method="post" action="/invite/<%= token %>">
       <label>Dinner</label>
       <select name="dinnerChoice" required>
-        <% theme.options.dinner.forEach(o => { %>
+        <% menu.dinner.forEach(o => { %>
           <option value="<%= o %>"><%= o %></option>
         <% }) %>
       </select>
@@ -24,7 +24,7 @@
 
       <label>Activity</label>
       <select name="activityChoice" required>
-        <% theme.options.activity.forEach(o => { %>
+        <% menu.activity.forEach(o => { %>
           <option value="<%= o %>"><%= o %></option>
         <% }) %>
       </select>
@@ -33,7 +33,7 @@
 
       <label>Mood</label>
       <select name="moodChoice" required>
-        <% theme.options.mood.forEach(o => { %>
+        <% menu.mood.forEach(o => { %>
           <option value="<%= o %>"><%= o %></option>
         <% }) %>
       </select>

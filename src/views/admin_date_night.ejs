@@ -12,6 +12,7 @@
       </div>
   
       <div style="display:flex; gap:8px; align-items:center;">
+        <a class="btn primary" href="/admin/date-night/<%= dateNight.id %>/menu">Edit itinerary ✏️</a>
         <a class="btn" href="/admin">Back</a>
         <form method="post" action="/admin/date-night/<%= dateNight.id %>/delete" style="margin:0">
           <button type="submit" onclick="return confirm('Delete this date night (and its invites + selections)?');">
@@ -23,6 +24,9 @@
   </div>
   
   <div style="height:12px"></div>
+
+  
+
   
   <div class="card">
     <h3 style="margin-top:0">Generate a new invite</h3>
@@ -101,17 +105,17 @@
     <div style="display:flex; flex-direction:column; gap:10px;">
       <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
         <div style="font-weight:900;">Dinner</div>
-        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.dinner.join(" • ") %></div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= menu.dinner.join(" • ") %></div>
       </div>
   
       <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
         <div style="font-weight:900;">Activity</div>
-        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.activity.join(" • ") %></div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= menu.activity.join(" • ") %></div>
       </div>
   
       <div style="border:1px solid var(--border); border-radius:var(--radius); padding:12px; background:#fff;">
         <div style="font-weight:900;">Mood</div>
-        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= theme.options.mood.join(" • ") %></div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;"><%= menu.mood.join(" • ") %></div>
       </div>
     </div>
   </div>
